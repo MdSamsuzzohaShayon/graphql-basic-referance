@@ -3,7 +3,8 @@ const graphql = require('graphql');
 const {
     GraphQLObjectType,
     GraphQLString,
-    GraphQLSchema
+    GraphQLSchema,
+    GraphQLID
 } = graphql;
 //LOAD OF DIFFRENT TRICKS TO FIND DATA OR CHANGE DATA 
 const _ = require('lodash');
@@ -35,7 +36,7 @@ const BookType = new GraphQLObjectType({
     name: 'Book',
     fields: () => ({
         id: {
-            type: GraphQLString
+            type: GraphQLID
         },
         name: {
             type: GraphQLString
@@ -56,11 +57,12 @@ const RootQuery = new GraphQLObjectType({
             type: BookType,
             args: {
                 id: {
-                    type: GraphQLString
+                    type: GraphQLID
                 }
             },
             // THIS IS VERY IMPORTENT FUNCTION
             resolve(parent, args) {
+                console.log(typeof(args.id));
                 //CODE TO GET DATA FROM DB / OTHER SOURCE
                 // args.id //ACCESSING ALL PROPERTY OF ID
                 return _.find(books, {
