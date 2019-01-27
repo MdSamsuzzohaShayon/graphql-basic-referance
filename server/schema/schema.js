@@ -1,10 +1,31 @@
 const graphql = require('graphql');
 //GRABBING ALL DEFFRENT PROPERTIES FROM GRAPHQL PACKAGE
-const {GraphQLObjectType, GraphQLString, GraphQLSchema} = graphql;
+const {
+    GraphQLObjectType,
+    GraphQLString,
+    GraphQLSchema
+} = graphql;
+//LOAD OF DIFFRENT TRICKS TO FIND DATA OR CHANGE DATA 
+const _ = require('lodash');
 
 
-
-
+//DUMMY DATA. LETTER ON WE WILL USE MONGO DB FOR THIS
+let books = [{
+        name: 'Aquaman',
+        genre: 'Superhero',
+        id: '1'
+    },
+    {
+        name: 'Fantastic Beasts: Where to find them',
+        genre: 'Fantasy',
+        id: '2'
+    },
+    {
+        name: 'Coco',
+        genre: 'Animation',
+        id: '3'
+    }
+];
 
 
 
@@ -12,10 +33,16 @@ const {GraphQLObjectType, GraphQLString, GraphQLSchema} = graphql;
 //DEFINING FIRST OBJECT TYPE (BOOKTYPE)
 const BookType = new GraphQLObjectType({
     name: 'Book',
-    fields: ()=>({
-        id: {type: GraphQLString},
-        name: {type: GraphQLString},
-        genre: {type: GraphQLString}
+    fields: () => ({
+        id: {
+            type: GraphQLString
+        },
+        name: {
+            type: GraphQLString
+        },
+        genre: {
+            type: GraphQLString
+        }
     })
 });
 
@@ -27,10 +54,18 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         book: {
             type: BookType,
-            args: {id: {type: GraphQLString}},
-            resolve(parent, args){
+            args: {
+                id: {
+                    type: GraphQLString
+                }
+            },
+            // THIS IS VERY IMPORTENT FUNCTION
+            resolve(parent, args) {
                 //CODE TO GET DATA FROM DB / OTHER SOURCE
                 // args.id //ACCESSING ALL PROPERTY OF ID
+                return _.find(books, {
+                    id: args.id
+                });
             }
         }
     }
@@ -43,6 +78,6 @@ const RootQuery = new GraphQLObjectType({
 
 
 
-module.exports = new GraphQLSchema ({
+module.exports = new GraphQLSchema({
     query: RootQuery
 });
