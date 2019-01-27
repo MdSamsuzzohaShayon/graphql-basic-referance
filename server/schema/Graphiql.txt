@@ -18,3 +18,8 @@
     }
   }
 }
+
+
+Mutations allow us to change our data 
+adding data, deleting data, updating data this are all Mutations
+
