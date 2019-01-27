@@ -15,7 +15,8 @@ const app = express();
 //GraphQL middleware options must contain a schema
 //THAT MEANS WE NEED TO MAKE A SCHEMA TO DESCRIBE HOW DATA ON GRAPH WILL LOOK
 app.use('/graphql', graphqlHTTP({
-    schema
+    schema,
+    graphiql: true //WE CAN USE GRAPHIQL TOOL WHEN WE ARE IN http://localhost:4000/graphql
 }));
 
 app.listen(4000, ()=>{
