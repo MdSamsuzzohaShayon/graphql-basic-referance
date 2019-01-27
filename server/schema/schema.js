@@ -5,7 +5,8 @@ const {
     GraphQLString,
     GraphQLSchema,
     GraphQLID,
-    GraphQLInt
+    GraphQLInt,
+    GraphQLList
 } = graphql;
 //LOAD OF DIFFRENT TRICKS TO FIND DATA OR CHANGE DATA 
 const _ = require('lodash');
@@ -29,6 +30,24 @@ let books = [{
         genre: 'Animation',
         id: '3',
         authorId: '3'
+    },
+    {
+        name: 'Anna Karenina',
+        genre: 'Superhero',
+        id: '4',
+        authorId: '2'
+    },
+    {
+        name: 'Madame Bovary',
+        genre: 'Fantasy',
+        id: '5',
+        authorId: '3'
+    },
+    {
+        name: 'War and Peace',
+        genre: 'Animation',
+        id: '6',
+        authorId: '2'
     }
 ];
 
@@ -36,7 +55,7 @@ let books = [{
 let authors = [{
         name: 'Stephen King',
         age: 44,
-        id: '1'
+        id: '3'
     },
     {
         name: 'William Shakespeare',
@@ -94,6 +113,12 @@ const AuthorType = new GraphQLObjectType({
         },
         age: {
             type: GraphQLInt
+        },
+        books: {
+            type: new GraphQLList(BookType), //BECAUSE IT IS LIST OF GROUP
+            resolve(parent, args){
+                return _.filter(books, {authorId: parent.id})
+            }
         }
     })
 });
