@@ -167,6 +167,20 @@ const RootQuery = new GraphQLObjectType({
                     id: args.id
                 });
             }
+        },
+        // THIS IS GONNA BE QUERY FOR A LIST OF BOOKS
+        books: {
+            type: new GraphQLList(BookType),
+            resolve(parent, args){
+                return books
+            }
+        },
+        // THIS IS GONNA BE QUERY FOR A LIST OF AUTHOR
+        authors: {
+            type: new GraphQLList(AuthorType),
+            resolve(parent, args){
+                return authors
+            }
         }
     }
 });

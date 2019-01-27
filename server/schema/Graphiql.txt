@@ -1,0 +1,20 @@
+//Paste the text in graphiql ui
+
+//More on Root Queries
+
+{
+  books{
+    name
+    genre
+    author{
+      name
+      age
+    }
+  }
+  authors{
+    name
+    books{
+      name
+    }
+  }
+}
