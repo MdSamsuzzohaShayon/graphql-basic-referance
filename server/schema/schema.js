@@ -1,4 +1,11 @@
 const graphql = require('graphql');
+
+//LOAD OF DIFFRENT TRICKS TO FIND DATA OR CHANGE DATA 
+const _ = require('lodash');
+
+const Book = require('../models/book');
+const Author = require('../models/author');
+
 //GRABBING ALL DEFFRENT PROPERTIES FROM GRAPHQL PACKAGE
 const {
     GraphQLObjectType,
@@ -8,11 +15,11 @@ const {
     GraphQLInt,
     GraphQLList
 } = graphql;
-//LOAD OF DIFFRENT TRICKS TO FIND DATA OR CHANGE DATA 
-const _ = require('lodash');
+
 
 
 //DUMMY DATA. LETTER ON WE WILL USE MONGO DB FOR THIS
+/* 
 let books = [{
         name: 'Aquaman',
         genre: 'Superhero',
@@ -65,9 +72,9 @@ let authors = [{
     {
         name: 'J.K. Rowling',
         age: 41,
-        id: '3'
+        id: '1'
     },
-];
+]; */
 
 
 
@@ -92,10 +99,10 @@ const BookType = new GraphQLObjectType({
         author: {
             type: AuthorType,
             resolve(parent, args) {
-                console.log(parent);
-                return _.find(authors, {
-                    id: parent.authorId
-                });
+                /* console.log(parent);
+                 return _.find(authors, {
+                     id: parent.authorId
+                 });*/
             }
         }
     })
@@ -116,8 +123,10 @@ const AuthorType = new GraphQLObjectType({
         },
         books: {
             type: new GraphQLList(BookType), //BECAUSE IT IS LIST OF GROUP
-            resolve(parent, args){
-                return _.filter(books, {authorId: parent.id})
+            resolve(parent, args) {
+                /*return _.filter(books, {
+                    authorId: parent.id
+                })*/
             }
         }
     })
@@ -150,9 +159,9 @@ const RootQuery = new GraphQLObjectType({
                 console.log(typeof (args.id));
                 //CODE TO GET DATA FROM DB / OTHER SOURCE
                 // args.id //ACCESSING ALL PROPERTY OF ID
-                return _.find(books, {
+                /*return _.find(books, {
                     id: args.id
-                });
+                });*/
             }
         },
         author: {
@@ -163,23 +172,23 @@ const RootQuery = new GraphQLObjectType({
                 }
             },
             resolve(parent, args) {
-                return _.find(authors, {
+                /*return _.find(authors, {
                     id: args.id
-                });
+                });*/
             }
         },
         // THIS IS GONNA BE QUERY FOR A LIST OF BOOKS
         books: {
             type: new GraphQLList(BookType),
-            resolve(parent, args){
-                return books
+            resolve(parent, args) {
+                //return books
             }
         },
         // THIS IS GONNA BE QUERY FOR A LIST OF AUTHOR
         authors: {
             type: new GraphQLList(AuthorType),
-            resolve(parent, args){
-                return authors
+            resolve(parent, args) {
+                //return authors
             }
         }
     }
