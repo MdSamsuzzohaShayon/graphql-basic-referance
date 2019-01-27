@@ -1,13 +1,19 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql'); //EXPRESS-GRAPHQL ALLOW EXPRESS TO UNDERSTAND GRAPHQL
+const schema = require('./schema/schema');
+
 
 
 const app = express();
+//STARTING
+//https://www.youtube.com/watch?v=Y0lDGjwRYKw&index=1&list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f
+//CURRENT
+//https://www.youtube.com/watch?v=ALqNbTik44o&index=8&list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f
 
 
-//GraphQL middleware options must contain a schema
+
 app.use('/graphql', graphqlHTTP({
-
+    
 }));
 
 app.listen(4000, ()=>{
