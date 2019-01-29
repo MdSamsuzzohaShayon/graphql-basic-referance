@@ -6,4 +6,4 @@ const authorSchema = new Schema({
     age: Number
 });
 
-module.module = mongoose.model('Author', authorSchema);
+module.exports = mongoose.model('Author', authorSchema);
