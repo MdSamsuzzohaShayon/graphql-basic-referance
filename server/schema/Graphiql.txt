@@ -23,3 +23,62 @@
 Mutations allow us to change our data 
 adding data, deleting data, updating data this are all Mutations
 
+
+
+
+
+//ADDING BOOKS AND AUTHOR (WE NEED TO PUT IT IN GRAPHIQL TO ADD )
+mutation{
+    addAuthor(name:"Robort Dawny JR", age: 34){
+        name
+        age
+     }
+}
+
+
+mutation{
+    addBook(name:"Pirate of the crabbian", genre: "Fantasy", authorId: "5c50cc0ed904ca27cc3843d7"){
+        name
+        age
+     }
+}
+
+
+
+
+
+GETTING BOOKS INFO
+{
+  books{
+    name
+    genre
+    author{
+      name
+      age
+    }
+  }
+}
+
+
+
+
+
+
+
+{
+  book(id:"5c50ce6b2a45de17bcb2b400"){
+    name
+    genre
+    author{
+      name
+      books{
+        name
+      }
+    }
+  }
+}
+
+
+
+
+
