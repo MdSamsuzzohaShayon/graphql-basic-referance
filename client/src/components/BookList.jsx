@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {gql} from 'apollo-boost';
 import { graphql } from 'react-apollo';
+import {getBooksQuery} from '../queries/queries';
 
 
 //TWO STEP TO MAKE QUERIES IN COMPONENT
@@ -9,19 +9,11 @@ import { graphql } from 'react-apollo';
 // 2. TAKE THE QUERIES AND BIND WITH COMPONENT
 
 
-//BECAUSE THIS ISN'T JS WE NEED TEMPLATE STRING
-const getBooksQuery = gql`
-    {
-        books{
-            name
-            id
-        }
-    }
-`;
 
 
 
-export class BookList extends Component {
+
+class BookList extends Component {
 
     displayBooks(){
         let data = this.props.data;

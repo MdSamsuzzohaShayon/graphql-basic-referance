@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
-import {gql} from 'apollo-boost';
+import {getAuthorsQuery} from '../queries/queries';
 import { graphql } from 'react-apollo';
 
 
 
 //BECAUSE THIS ISN'T JS WE NEED TEMPLATE STRING
-const getAuthorsQuery = gql`
-    {
-        authors{
-            name
-            id
-        }
-    }
-`;
 
 
 
-export class AddBook extends Component {
+
+class AddBook extends Component {
     displayAuthor(){
         let data = this.props.data;
         if(data.loading){
