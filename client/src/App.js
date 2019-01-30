@@ -3,6 +3,7 @@ import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo'; //BIND APOLLO WITH REACT . HELP REACT TO UNDERSTAND APOLLO
 
 import BookList from './components/BookList';
+import AddBook from "./components/AddBook";
 
 //APOLLO CLIENT SETUP
 const client = new ApolloClient({
@@ -15,8 +16,11 @@ class App extends Component {
     return (
       <ApolloProvider client={client} >
         <div id='main'>
-          <h1>Hello World</h1>
+          <h1>List from MongoDB</h1>
+          <ul>
+          </ul>
           <BookList />
+          <AddBook />
         </div>
       </ApolloProvider>
     );
