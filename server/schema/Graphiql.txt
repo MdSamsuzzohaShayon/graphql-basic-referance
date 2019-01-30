@@ -1,3 +1,8 @@
+GraphQL is not javascript
+node js or react js don't understand graphql 
+Apollo bind with react to understand that 
+Node need express-graphql package from node package manager to understand
+
 //Paste the text in graphiql ui
 
 //More on Root Queries
