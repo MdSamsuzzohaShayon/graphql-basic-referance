@@ -2,6 +2,7 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql'); //EXPRESS-GRAPHQL ALLOW EXPRESS TO UNDERSTAND GRAPHQL
 const schema = require('./schema/schema');
 const mongoose = require('mongoose');
+const cors = require('cors'); // ALLOW CROSS-ORIGIN REQUEST
 
 
 
@@ -9,7 +10,7 @@ const app = express();
 //STARTING
 //https://www.youtube.com/watch?v=Y0lDGjwRYKw&index=1&list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f
 
-
+app.use(cors());
 
 
 mongoose.connect('mongodb://shayon:Shayon1234@ds113815.mlab.com:13815/graphql-basic');
