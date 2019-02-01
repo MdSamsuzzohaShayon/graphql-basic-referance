@@ -16,6 +16,8 @@ import {getBooksQuery} from '../queries/queries';
 class BookList extends Component {
 
     displayBooks(){
+        //BECAUSE WE ARE GRABBING DATA FROM BACKEND AND DATABASE BY USING APOLLO APP.JS CLASS
+        // THAT'S WHY HERE HERE PROPS MEANS PROPERTY OF DATABASE
         let data = this.props.data;
         if(data.loading){
             return (<div>Loding Books...</div>);

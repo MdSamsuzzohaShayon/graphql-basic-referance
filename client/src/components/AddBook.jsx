@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {getAuthorsQuery} from '../queries/queries';
+import { getAuthorsQuery } from '../queries/queries';
 import { graphql } from 'react-apollo';
+import { Button } from 'react-bootstrap';
 
 
 
@@ -10,39 +11,59 @@ import { graphql } from 'react-apollo';
 
 
 class AddBook extends Component {
-    displayAuthor(){
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            genre: '',
+            authorId: ''
+        };
+    }
+
+
+
+    displayAuthor() {
         let data = this.props.data;
-        if(data.loading){
+        if (data.loading) {
             return (<option disabled>Loading Author....</option>);
-        }else{
-            return data.authors.map(author=>{
+        } else {
+            return data.authors.map(author => {
                 return (<option key={author.id} value={author.id}>{author.name}</option>);
             });
         }
     }
-  render() {
-    //   console.log(this.props.data);
-    return (
-      <form id="add-book">
-        <div className="field">
-            <label >Book name:</label>
-            <input type="text"/>
-        </div>
-        <div className="field">
-            <label >Genre:</label>
-            <input type="text"/>
-        </div>
-        <div className="field">
-            <label >Author:</label>
-            <select>
-                <option>Select Another</option>
-                {this.displayAuthor()}
-            </select>
-        </div>
-        <button>Add</button>
-      </form>
-    );
-  }
-}
 
+
+    submitForm(e) {
+        //THIS NO LONGER JUST CONNA REFRESH THE PAGE
+        e.preventDefault();
+        console.log(this.state);
+    }
+
+
+
+    render() {
+        //   console.log(this.props.data);
+        return (
+            <form id="add-book" onSubmit={this.submitForm.bind(this)}>
+                <div className="field">
+                    <label >Book name:</label>
+                    <input type="text" onChange={(e) => this.setState({ name: e.target.value })} />
+                </div>
+                <div className="field">
+                    <label >Genre:</label>
+                    <input type="text" onChange={(e) => this.setState({ name: e.target.value })} />
+                </div>
+                <div className="field">
+                    <label >Author:</label>
+                    <select onChange={(e) => this.setState({ authorId: e.target.value })}>
+                        <option>Select Another</option>
+                        {this.displayAuthor()}
+                    </select>
+                </div>
+                <button >Add</button>
+            </form>
+        );
+    }
+}
 export default graphql(getAuthorsQuery)(AddBook);
