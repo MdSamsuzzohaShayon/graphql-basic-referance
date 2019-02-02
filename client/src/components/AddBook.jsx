@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { getAuthorsQuery } from '../queries/queries';
-import { graphql } from 'react-apollo';
+import { getAuthorsQuery, addBookMutation } from '../queries/queries';
+import { graphql, compose } from 'react-apollo';
 import { Button } from 'react-bootstrap';
 
 
@@ -23,7 +23,8 @@ class AddBook extends Component {
 
 
     displayAuthor() {
-        let data = this.props.data;
+        let data = this.props.getAuthorsQuery;
+        // console.log(this.props);
         if (data.loading) {
             return (<option disabled>Loading Author....</option>);
         } else {
@@ -37,7 +38,15 @@ class AddBook extends Component {
     submitForm(e) {
         //THIS NO LONGER JUST CONNA REFRESH THE PAGE
         e.preventDefault();
-        console.log(this.state);
+        // console.log(this.state);
+
+        this.props.addBookMutation({
+            variables: {
+                name: this.state.name,
+                genre: this.state.genre,
+                authorId: this.state.authorId
+            }
+        });
     }
 
 
@@ -52,7 +61,7 @@ class AddBook extends Component {
                 </div>
                 <div className="field">
                     <label >Genre:</label>
-                    <input type="text" onChange={(e) => this.setState({ name: e.target.value })} />
+                    <input type="text" onChange={(e) => this.setState({ genre: e.target.value })} />
                 </div>
                 <div className="field">
                     <label >Author:</label>
@@ -61,9 +70,19 @@ class AddBook extends Component {
                         {this.displayAuthor()}
                     </select>
                 </div>
-                <button >Add</button>
+                <button style={{border:'none',background: "blue", padding:'10px 30px', color:'white'}}>Add</button>
             </form>
         );
     }
 }
-export default graphql(getAuthorsQuery)(AddBook);
+//WE NEED TO COMPOST TWO QUERIES TOGETHER
+// export default graphql(getAuthorsQuery)(AddBook);
+
+
+export default compose(
+    //LIST OUT DIFFRENT QUERIES AND MUTATION
+    // THIS TWO MUTATION AND QUERIES COMPOSE TOGETHER AND BOTH BIND WITH ADDBOOK
+    graphql(getAuthorsQuery, {name: "getAuthorsQuery"}),
+    graphql(addBookMutation, {name: "addBookMutation"})
+)(AddBook);
+
