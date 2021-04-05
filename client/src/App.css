@@ -1,38 +1,52 @@
-.App {
+.AddArticle{
+  width: 100%;
+
+}
+h2{
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  color: rgb(8, 50, 61);
+}
+
+form{
+  width: 60%;
+  margin-left: 20%;
+}
+.form-row{
+  margin: 20px 0;
+}
+.form-row label{
+  color: rgb(8, 50, 61);
+  display: block;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+.form-row input, .form-row textarea{
+  width: 90%;
+  border: none;
+  background-color: rgb(152, 187, 196);
+  height: 40px;
+  padding: 5px 10px;
+  outline: none;
+}
+#img{
+  background: none;
+  padding: 0;margin: 0;
+}
+.form-row input[type="file"]::-webkit-file-upload-button{
+  border: none;
+  height: 100%;
+  padding: 0 30px;
+  color: rgb(152, 187, 196);
+  background: rgb(8, 50, 61);
+}
+.btn{
+  margin-top: 30px;
+  border: none;
+  padding: 16px 70px;
+  color: rgb(152, 187, 196);
+  background: rgb(8, 50, 61);
+}
+.btn-wrap{
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

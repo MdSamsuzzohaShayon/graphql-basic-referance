@@ -44,6 +44,8 @@ router.post('/add', upload.single('img'), (req, res, next) => {
         desc: req.body.desc,
         img: req.file.originalname
     });
+    console.log("Request body: ", req.body);
+    console.log("Request file: ", req.file);
 });
 
 
