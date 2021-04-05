@@ -10,10 +10,14 @@ const app = express();
 mongoose.connect(process.env.MONGO_URI, { useUnifiedTopology: true, useNewUrlParser: true }, () => console.log('Mongodb is connected'));
 
 
-app.get('/api', (req, res, next) => {
-    // res.status(200).json({ "msg": "Hello world" });
-    res.send({ "msg": "Hello world" });
-});
+// app.get('/api', (req, res, next) => {
+//     // res.status(200).json({ "msg": "Hello world" });
+//     res.send({ "msg": "Hello world" });
+// });
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+
 app.use('/api/article', article);
 
 
